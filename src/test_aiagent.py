@@ -11,46 +11,28 @@ class TestAIAgent(unittest.TestCase):
     def setUp(self):
         self.agent = AIAgent()
 
-    def test_get_tools_description(self):
-        description = self.agent.get_tools_description()
-        expected_description = (
-            "Available Tools:\n\n"
-            "- time: Get the current time\n"
-            "- search: Search the web\n"
-        )
-        self.assertEqual(description, expected_description)
-
-
-    def test_execute_tool(self):
-        # Test executing the 'time' tool
-        result = self.agent.execute_tool("time")
-        self.assertTrue(result.startswith("Tool time result:"))
-
-        # Test executing the 'search' tool
-        query = "Python unittest"
-        result = self.agent.execute_tool("search", query)
-        self.assertEqual(result, f"Tool search result: Searching the web for: {query}")
-
-        # Test executing a non-existent tool
-        result = self.agent.execute_tool("non_existent_tool")
-        self.assertEqual(result, "Tool not found")
-
-    def test_extract_tool_calls(self):
-        text = "<<time()>> and <<search(Python unittest)>>"
-        expected_tool_calls = [
+    def test_get_tools_api_specs(self):
+        specs = self.agent.get_tools_api_specs()
+        expected_specs = json.dumps([
             {
-                'tool': 'time',
-                'parameters': '',
-                'full_match': '<<time()>>'
+                "name": "time",
+                "description": "Get the current time",
+                "parameters": [{}]
             },
             {
-                'tool': 'search',
-                'parameters': 'Python unittest',
-                'full_match': '<<search(Python unittest)>>'
+                "name": "search",
+                "description": "Search the web",
+                "parameters": [{"name": "query", "type": "str", "description": "The search query"}]
             }
-        ]
-        tool_calls = self.agent.extract_tool_calls(text)
-        self.assertEqual(tool_calls, expected_tool_calls)
+        ], indent=4)
+        self.assertEqual(specs, expected_specs)
+
+    def test_execute_tool(self):
+        # Test executing a non-existent tool
+        result = self.agent.execute_tool("non_existent_tool", {})
+        self.assertEqual(result, "Tool not found")
+
+
 
 if __name__ == '__main__':
     unittest.main()

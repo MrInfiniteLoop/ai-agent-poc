@@ -1,6 +1,6 @@
-# Jupyter Notebook App
+# AI Agent PoC
 
-This project is a Jupyter Notebook application designed for data analysis and visualization. It includes a structured setup for maintaining custom Python classes that can be imported into your notebooks.
+This project is a Jupyter Notebook application for a PoC on simple AI agents
 
 ## Project Structure
 
