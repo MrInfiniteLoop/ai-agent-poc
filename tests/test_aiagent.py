@@ -1,9 +1,10 @@
 import unittest
 import sys
 import os
+import json
 
 # Add the directory containing aiagent.py to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 from aiagent import AIAgent, Tool
 
