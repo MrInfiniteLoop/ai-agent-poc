@@ -1,18 +1,37 @@
 # AI Agent PoC
 
-This project is a Jupyter Notebook application for a PoC on simple AI agents
+This project is a proof of concept for simple AI agents.
+
+## Notebook Summary
+
+The `ai_agent_poc.ipynb` notebook demonstrates how an AI agent can perform tasks and augment its knowledge using a tools construct to call Python methods. The notebook covers the following steps:
+
+1. **Loading My AI Agent Lib**: Initializes the AI agent and loads necessary libraries.
+2. **Generate The Retrieval Prompt**: Creates a prompt based on the user's request.
+3. **Feed Prompt to LLM**: Sends the prompt to the language model and retrieves the response.
+4. **Response Parsing & Processing**: Parses the response and executes the required tools.
+5. **Generate Interpretation Prompt**: Creates a prompt to interpret the results.
+6. **Feed Prompt to LLM**: Sends the interpretation prompt to the language model and retrieves the final response.
+
+For more details, please refer to the [ai_agent_poc.ipynb](./notebooks/ai_agent_poc.ipynb) notebook.
 
 ## Project Structure
 
 ```
-jupyter-notebook-app
-├── notebooks
-│   └── main.ipynb        # Jupyter Notebook for analysis
+ai-agent-poc
 ├── src
-│   ├── __init__.py       # Package initialization
-│   └── my_class.py       # Custom Python classes
-├── requirements.txt       # Required Python packages
-└── README.md              # Project documentation
+│   ├── __init__.py
+│   ├── aiagent.py
+│   ├── agent_memory.py
+│   ├── parser.py
+│   ├── prompts.py
+│   └── tool.py
+├── tests
+│   ├── __init__.py
+│   ├── test_aiagent.py
+│   └── test_parser.py
+├── requirements.txt
+└── README.md
 ```
 
 ## Installation
@@ -20,14 +39,14 @@ jupyter-notebook-app
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd jupyter-notebook-app
+   cd ai-agent-poc
    ```
 
-2. Activate your virtual environment:
+2. Create and activate your virtual environment:
    ```
+   python -m venv venv
    source venv/bin/activate
    ```
-
 
 3. Install the required packages:
    ```
@@ -41,12 +60,16 @@ jupyter-notebook-app
    source venv/bin/activate
    ```
 
-2. Launch Jupyter Notebook:
+2. Run the tests:
    ```
-   jupyter notebook notebooks/main.ipynb
+   python -m unittest discover tests
    ```
 
-3. Import your custom classes in the notebook:
-   ```python
-   from src.my_class import MyClass
+3. Start the Jupyter Notebook:
    ```
+   jupyter notebook
+   ```
+
+4. Open the `ai_agent_poc.ipynb` notebook and follow the step-by-step process to interact with the AI agent.
+
+
